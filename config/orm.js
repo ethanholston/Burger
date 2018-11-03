@@ -30,14 +30,14 @@ function objToSql(ob) {
 }
 
 var orm = {
-  selectAll = function(table, cb){
+  selectAll: function(table, cb){
     connection.query("SELECT * FROM ??", [table], function(err, res){
+      // console.log(res);
       if (err) throw err;
-      return res;
       cb(res);
     });
   },
-  insertOne = function(table, cols, vals, cb) {
+  insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -57,7 +57,7 @@ var orm = {
       cb(result);
     });
   },
-  updateOne = function(table, objColVals, condition, cb) {
+  updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
@@ -75,3 +75,5 @@ var orm = {
     });
   }
 }
+
+module.exports = orm;
