@@ -1,2 +1,2 @@
 INSERT INTO burgers(burger_name, devoured)
-VALUES("Cowboy", true), ("Diablo", true), ("Veggie", false);
+VALUES("Cowboy", false), ("Diablo", true), ("Veggie", false);
