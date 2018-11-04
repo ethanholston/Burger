@@ -12,7 +12,6 @@ function registerPartial(name, partialId) {
 function displayPage() {
   $.get("/api/burgers/").then(
     function(burgers) {
-      console.log("callback");
       renderTemplate({burgers: burgers});
       console.log(burgers);
     }

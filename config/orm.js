@@ -58,10 +58,11 @@ var orm = {
     });
   },
   updateOne: function(table, objColVals, condition, cb) {
+    console.log("objcolvals" + objColVals);
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
-    queryString += objToSql(objColVals);
+    queryString += objColVals;
     queryString += " WHERE ";
     queryString += condition;
 

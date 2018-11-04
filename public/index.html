@@ -12,7 +12,11 @@
       <ul>
         {{#each burgers}}
           {{#unless devoured}}
-            {{> burger-block devoured=false}}
+          <li>
+            <p>Type: {{burger_name}}<button class="devour" data-id="{{id}}">
+               Eat it!
+            </button></p>
+          </li>
           {{/unless}}
         {{/each}}
       </ul>
@@ -22,7 +26,10 @@
       <ul>
         {{#each burgers}}
           {{#if devoured}}
-            {{> burger-block devoured=true}}
+          <li>
+            <p>Name: {{burger_name}}</p>
+          </li>
+            <!-- {{> burger-block devoured=true}} -->
           {{/if}}
         {{/each}}
       </ul>
@@ -38,12 +45,12 @@
       </form>
     </script>
 
-    <script id="burger-block-partial" type="text/x-handlebars-template">
+    <script id="burgers-block-partial" type="text/x-handlebars-template">
       <li>
         {{name}}
 
-        <button class="change-sleep" data-id="{{id}}" data-newsleep="{{sleep}}">
-          {{#if devoured=false}}Eat it!{{/if}}
+        <button class="devour" data-id="{{id}}">
+          {{#unless devoured}}Eat it!{{/unless}}
         </button>
       </li>
     </script>
