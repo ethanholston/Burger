@@ -3,57 +3,68 @@
 	<head>
     <title>Burger App!</title>
   <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
   <script src="/assets/js/script.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css"/>
 
     <script id="page-template" type="text/x-handlebars-template">
-      <h1>Burgers!</h1>
-
-      <ul>
+      <div class="jumbotron">
+        <h1 class="display-4">ORM Burgers</h1>
+        <p class="lead">Select a burger to eat!</p>
+      </div>
+      <h2>Available Burgers</h2>
+      <div class="row">
         {{#each burgers}}
           {{#unless devoured}}
-          <li>
-            <p>Type: {{burger_name}}<button class="devour" data-id="{{id}}">
-               Eat it!
-            </button></p>
-          </li>
+          <div class="col-md-2">
+            <div class="card" style="width: 18rem;">
+              <img id="burger-img" class="card-img-top" src="https://www.seriouseats.com/recipes/images/2015/07/20150728-homemade-whopper-food-lab-35.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{burger_name}}</h5>
+                <p class="card-text">{{burger_desc}}</p>
+                <a data-id="{{id}}" class="devour btn btn-primary">Eat it!</a>
+              </div>
+            </div>
+          </div>
           {{/unless}}
         {{/each}}
-      </ul>
+      </div>
 
       <h2>Burger graveyard!</h2>
 
-      <ul>
-        {{#each burgers}}
-          {{#if devoured}}
-          <li>
-            <p>Name: {{burger_name}}</p>
-          </li>
-            <!-- {{> burger-block devoured=true}} -->
-          {{/if}}
-        {{/each}}
-      </ul>
+      <div class="row">
+          {{#each burgers}}
+            {{#if devoured}}
+            <div class="col-md-2">
+              <div class="card" style="width: 18rem;">
+                <img id="burger-img" class="card-img-top" src="https://www.seriouseats.com/recipes/images/2015/07/20150728-homemade-whopper-food-lab-35.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{burger_name}}</h5>
+                  <p class="card-text">{{burger_desc}}</p>
+                  <a data-id="{{id}}" class="revive btn btn-primary">Make Another!</a>
+                </div>
+              </div>
+            </div>
+            {{/if}}
+          {{/each}}
+        </div>
 
       <h2>Add a burger</h2>
 
       <form class="create-form">
         <div class="form-group">
-          <label for="ca">Burger Name:</label>
+          <label for="ba">Burger Name:</label>
           <input type="text" id="ba" name="name">
+        </div>
+        <div class="form-group">
+          <label for="bd">Description:</label>
+          <input type="textarea" rows="4" cols="20" id="bd" name="desc">
         </div>
         <button type="submit">Add Burger</button>
       </form>
     </script>
 
-    <script id="burgers-block-partial" type="text/x-handlebars-template">
-      <li>
-        {{name}}
-
-        <button class="devour" data-id="{{id}}">
-          {{#unless devoured}}Eat it!{{/unless}}
-        </button>
-      </li>
-    </script>
   </head>
 
   <body>

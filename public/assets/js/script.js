@@ -13,7 +13,6 @@ function displayPage() {
   $.get("/api/burgers/").then(
     function(burgers) {
       renderTemplate({burgers: burgers});
-      console.log(burgers);
     }
   );
 }
@@ -38,7 +37,23 @@ function setupEventHandlers() {
       data: devouredState
     }).then(
       function() {
-        console.log("devoured");
+        displayPage();
+      }
+    );
+  });
+
+  $(document).on("click", ".revive", function(event) {
+    var id = $(this).data("id");
+
+    var devouredState = {
+      devoured: false
+    };
+
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: devouredState
+    }).then(
+      function() {
         displayPage();
       }
     );
@@ -49,6 +64,7 @@ function setupEventHandlers() {
 
     var newBurger = {
       name: $("#ba").val().trim(),
+      desc: $("#bd").val().trim()
     };
 
     $.ajax("/api/burgers", {
@@ -56,7 +72,6 @@ function setupEventHandlers() {
       data: newBurger
     }).then(
       function() {
-        console.log("created new burger");
         displayPage();
       }
     );

@@ -1,2 +1,2 @@
-INSERT INTO burgers(burger_name, devoured)
-VALUES("Cowboy", false), ("Diablo", true), ("Veggie", false);
+INSERT INTO burgers(burger_name, burger_desc, devoured)
+VALUES("Cowboy", "Bacon, Onion rings and BBQ sauce", false), ("Diablo", "Spicy mayo, jalapenos and Pepperjack cheese", true), ("Veggie", "Veggie patty with lettuce, tomato and onion", false);
